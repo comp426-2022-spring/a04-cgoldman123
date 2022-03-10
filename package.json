@@ -1,0 +1,26 @@
+{
+  "name": "a04-cgoldman123",
+  "version": "1.0.0",
+  "description": "Databases, logs, errors, middleware",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js --port=6464"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp426-2022-spring/a04-cgoldman123.git"
+  },
+  "author": "Carter Goldman",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/comp426-2022-spring/a04-cgoldman123/issues"
+  },
+  "homepage": "https://github.com/comp426-2022-spring/a04-cgoldman123#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "fs": "^0.0.1-security",
+    "md5": "^2.3.0",
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.0.2"
+  }
+}
