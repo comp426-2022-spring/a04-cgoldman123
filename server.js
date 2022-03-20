@@ -54,8 +54,9 @@ app.get("/app/log/access", (req, res) => {
 });
 
 
-app.use(function(req, res) {
+app.use(function(req, res, next) {
     res.status(404).send("404 NOT FOUND")
-    res.type("text/plain")  
+    res.type("text/plain") 
+    next() 
 })
 

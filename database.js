@@ -1,6 +1,8 @@
 const Database = require('sqlite3')
 
-const db = new Database('log.db')
+
+const db = new Database.Database('log.db')
+
 
 const stmt = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and 'access'`)
 let row = stmt.get()
