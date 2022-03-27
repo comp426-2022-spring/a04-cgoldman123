@@ -5,8 +5,8 @@ const db = new Database.Database('log.db')
 
 
 const stmt = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and 'access'`)
-let row = stmt.get()
-
+let row =  stmt.get()
+// testing autograder 
 if (row === undefined) {
     console.log('log database is missing. Creating log database.')
     const sqlInit = `
