@@ -1,6 +1,6 @@
 const Database = require('sqlite3')
 
-
+const da = "nothting"
 const db = new Database.Database('log.db')
 
 
