@@ -18,6 +18,7 @@
   "homepage": "https://github.com/comp426-2022-spring/a04-cgoldman123#readme",
   "dependencies": {
     "cars": "^1.1.6",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "fs": "^0.0.1-security",
     "md5": "^2.3.0",

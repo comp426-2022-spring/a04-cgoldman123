@@ -8,8 +8,8 @@ if (args.help === true) {
 const express = require('express')
 const app = express()
 //const fs = require('fs')
-const cars = require('cars');
-app.use(cars())
+const cors = require('cors');
+app.use(cors())
 
 
 var db = require("./database.js")
