@@ -1,7 +1,7 @@
 const args = require('minimist')(process.argv.slice(2))
 // Define allowed argument name 'help'.
 if (args.help === true) {
-  console.log('HELP')
+  console.log('(--help).*(Return this message and exit.)')
   process.exit(0)
 }
 
