@@ -1,8 +1,15 @@
+const args = require('minimist')(process.argv.slice(2))
+// Define allowed argument name 'help'.
+if (args.help === true) {
+  console.log('HELP')
+  process.exit(0)
+}
+
 const express = require('express')
-const morgan = require('morgan')
-//const req = require('express/lib/request')
 const app = express()
 //const fs = require('fs')
+const cars = require('cars');
+app.use(cars())
 
 
 var db = require("./database.js")
@@ -12,20 +19,11 @@ app.use(express.json());
 
 
 
-
-const args = require('minimist')(process.argv.slice(2))
-// Define allowed argument name 'help'.
-args["help"]
-
-
-
-
-
 // Define allowed argument name 'port'.
-args["port"]
+
 // Define a const `port` using the argument from the command line. 
 // Make this const default to port 3000 if there is no argument given for `--port`.
-const port = args.port || 5555
+const port = args.port || process.env.PORT || 5555
 
 
 // let logging = morgan('combined')
