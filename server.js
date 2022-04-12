@@ -18,6 +18,33 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
 
+const accessLog = fs.createWriteStream('access.log', { flags: 'a' })
+// Set up the access logging middleware
+    app.use(morgan('combined', { stream: accessLog }))
+
+// Always log to database
+app.use((req, res, next) => {
+    let logdata = {
+        remoteaddr: req.ip,
+        remoteuser: req.user,
+        time: Date.now(),
+        method: req.method,
+        url: req.url,
+        protocol: req.protocol,
+        httpversion: req.httpVersion,
+        status: res.statusCode,
+        referrer: req.headers['referer'],
+        useragent: req.headers['user-agent']
+    };
+    console.log(logdata)
+    const stmt = db.prepare('INSERT INTO accesslog (remoteaddr, remoteuser, time, method, url, protocol, httpversion, status, referrer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+    const info = stmt.run(logdata.remoteaddr, logdata.remoteuser, logdata.time, logdata.method, logdata.url, logdata.protocol, logdata.httpversion, logdata.status, logdata.referrer, logdata.useragent)
+    //console.log(info)
+    next();
+})
+
+
+
 
 // Define allowed argument name 'port'.
 
