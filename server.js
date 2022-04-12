@@ -43,23 +43,18 @@ app.get('/app', (req, res)  => {
 
 // READ a list of users (HTTP method GET)
 app.get("/app/log/access", (req, res) => {
-  try{
     const stmt = db.prepare('SELECT * FROM accesslog').all()
     res.status(200).send(stmt)
-  } catch (e) {
-    res.status(500).send("500 Internal Server Error")
-    throw new Error('Error')
-  }
+  
+})
+app.get("app/error", (req, res) => {
+  // res.status(500).send("500 Internal Server Error")
+  throw new Error('Error test works')
 });
 
-app.get("app/error", (req, res) => {
-  res.status(500).send("500 Internal Server Error")
-  // throw new Error('Error')
-});
-/*
 app.use(function(req, res, next) {
     res.status(404).send("404 NOT FOUND")
     res.type("text/plain") 
     next() 
 })
-*/
+
