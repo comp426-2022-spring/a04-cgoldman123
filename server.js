@@ -17,14 +17,15 @@ app.use(cors())
 
 
 var db = require("./database.js")
-var md5 = require("md5")
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-/*
-const accessLog = fs.createWriteStream('access.log', { flags: 'a' })
-
-app.use(morgan('combined', { stream: accessLog }))
+if (args.log == "false") {
+    console.log("not creating it")
+} else{
+    const accessLog = fs.createWriteStream('access.log', { flags: 'a' })
+    app.use(morgan('combined', { stream: accessLog }))
+}
 
 // Always log to database
 app.use((req, res, next) => {
@@ -71,18 +72,17 @@ app.get('/app', (req, res)  => {
     res.status(200);
 });
 
-/*
-// READ a list of users (HTTP method GET)
-app.get("/app/log/access", (req, res) => {
-    const stmt = db.prepare('SELECT * FROM accesslog').all()
-    res.status(200).send(stmt)
-})
-*/
 
-app.get("app/error", (req, res) => {
-  res.status(500).send("500 Internal Server Error")
-  // throw new Error('Error test works')
-});
+if (args.debug) {
+    app.get("app/log/access",(req, res) => {
+        const stmt = db.prepare('SELECT * FROM accesslog').all()
+        res.status(200).send(stmt)
+    })
+    app.get("app/error", (req, res) => {
+        // res.status(500).send("500 Internal Server Error")
+        throw new Error('Error test works')
+    }) 
+}
 
 app.use(function(req, res, next) {
     res.status(404).send("404 NOT FOUND")
