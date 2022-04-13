@@ -80,8 +80,8 @@ app.get("/app/log/access", (req, res) => {
 */
 
 app.get("app/error", (req, res) => {
-  // res.status(500).send("500 Internal Server Error")
-  throw new Error('Error test works')
+  res.status(500).send("500 Internal Server Error")
+  // throw new Error('Error test works')
 });
 
 app.use(function(req, res, next) {
