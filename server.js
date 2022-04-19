@@ -86,9 +86,9 @@ if (args.debug || args.d) {
     }) 
 }
 
-app.use(function(req, res, next) {
+app.use(function(req, res) {
     res.status(404).send("404 NOT FOUND")
     res.type("text/plain") 
-    next() 
+    
 })
 
