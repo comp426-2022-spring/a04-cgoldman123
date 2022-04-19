@@ -11,7 +11,8 @@ if (row === undefined) {
     const sqlInit = `
         CREATE TABLE accesslog ( id INTEGER PRIMARY KEY, remoteaddr TEXT remoteuser TEXT, time TEXT, method TEXT, 1 url TEXT, protocol TEXT, httpversion TEXT, status TEXT, referer TEXT, useragent TEXT)
         `
-    logdb.exec(sqlInit)
+    db.exec(sqlInit)
+    
 } else {
     console.log('Log database exists')
 }
