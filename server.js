@@ -42,10 +42,10 @@ app.use((req, res, next) => {
         referrer: req.headers['referer'],
         useragent: req.headers['user-agent']
     };
-    console.log(logdata)
+    // console.log(logdata)
     const stmt = db.prepare('INSERT INTO accesslog (remoteaddr, remoteuser, time, method, url, protocol, httpversion, status, referrer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
-    const info = stmt.run(logdata.remoteaddr, logdata.remoteuser, logdata.time, logdata.method, logdata.url, logdata.protocol, logdata.httpversion, logdata.status, logdata.referrer, logdata.useragent)
-    console.log(info)
+    // const info = stmt.run(logdata.remoteaddr, logdata.remoteuser, logdata.time, logdata.method, logdata.url, logdata.protocol, logdata.httpversion, logdata.status, logdata.referrer, logdata.useragent)
+    // console.log(info)
     next();
 })
 
@@ -76,11 +76,12 @@ app.get('/app', (req, res)  => {
 if (args.debug) {
     app.get("app/log/access",(req, res) => {
         const stmt = db.prepare('SELECT * FROM accesslog').all()
-        res.status(200).send(stmt)
+        res.status(200).send(stmt);
+        // perhaps wanna try res.status(200).json(logData)
     })
     app.get("app/error", (req, res) => {
         // res.status(500).send("500 Internal Server Error")
-        throw new Error('Error test works')
+        throw new Error('Error test works');
     }) 
 }
 
