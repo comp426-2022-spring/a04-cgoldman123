@@ -12,13 +12,14 @@ const express = require('express')
 
 const app = express()
 
-const cors = require('cors');
-app.use(cors())
+// const cors = require('cors');
+// app.use(cors())
 
 
 var db = require("./database.js")
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
+
 
 if (args.log == "false") {
     console.log("not creating it")
