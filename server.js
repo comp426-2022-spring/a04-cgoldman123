@@ -75,8 +75,7 @@ if (args.debug || args.d) {
     })
 }
 
-app.use(function(req, res){
-    const statusCode = 404
-    const statusMessage = 'NOT FOUND'
-    res.status(statusCode).end(statusCode+ ' ' +statusMessage)
-});
+app.use(function(req, res) {
+    res.status(404).send("404 NOT FOUND")
+    res.type("text/plain")  
+})
