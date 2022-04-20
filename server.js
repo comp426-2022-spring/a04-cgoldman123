@@ -29,7 +29,7 @@ app.use(express.json());
 
 
 const port = args.port || args.p || 5555
-// Start server
+
 const server = app.listen(port, () => {
     console.log(`App is running on port ${port}`)
 });
@@ -55,10 +55,7 @@ app.use((req, res, next) => {
         referrer: req.headers['referer'],
         useragent: req.headers['user-agent']
     };
-    // console.log(logdata)
     const stmt = db.prepare('INSERT INTO accesslog (remoteaddr, remoteuser, time, method, url, protocol, httpversion, status, referrer, useragent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
-    //const info = stmt.run(logdata.remoteaddr, logdata.remoteuser, logdata.time, logdata.method, logdata.url, logdata.protocol, logdata.httpversion, logdata.status, logdata.referrer, logdata.useragent)
-    //console.log(info)
     next();
 })
 app.get("/app", (req, res, next) => {
@@ -82,10 +79,3 @@ app.use(function(req, res){
     const statusMessage = 'NOT FOUND'
     res.status(statusCode).end(statusCode+ ' ' +statusMessage)
 });
-
-// Tell STDOUT that the server is stopped
-// process.on('SIGINT', () => {
- //   server.close(() => {
-//		console.log('\nApp stopped.');
-//	});
-//});
